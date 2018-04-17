@@ -1,13 +1,15 @@
 import { FETCH_USERS } from '../actions/users/index';
 
-const INITIAL_STATE = { users: [] };
-
 export default function(state = [], action) {
-	
 	switch (action.type) {
 	case FETCH_USERS:
-		return [ ...action.payload.data.payload.results,  ...state ];
+		if (!action.payload.data) {
+			return state;
+		}
+		// return Object.assign({}, state, action.payload.data);
+		return [ action.payload.data, ...state ];
+		//return { users:action.payload.data, ...state }; //Use this
 	default:
-		return INITIAL_STATE;
+		return state;
 	}
 }

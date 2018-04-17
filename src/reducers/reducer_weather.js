@@ -8,7 +8,7 @@ export default function(state = [], action) {
 			return state;
 		}
 		/*return state.concat([action.payload.data]);*/
-		return [ action.payload.data, ...state ];
+		return [ ...state, action.payload.data ];
 	}
 	return state;
 }

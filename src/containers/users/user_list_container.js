@@ -9,7 +9,16 @@ class UserList extends Component {
 	}
 
 	renderUser(userData) {
-		const user_id = userData.id
+		return userData.payload.results.map((user)=>{ return (
+			<tr key={user.id}>
+				<td>{user.first_name}</td>
+				<td>{user.last_name}</td>
+				<td>{user.username}</td>
+				<td>{user.email}</td>
+			</tr>
+			);
+		})
+		/*const user_id = userData.id
 		const first_name = userData.first_name
 		const last_name = userData.last_name;
 		const username = userData.username;
@@ -22,7 +31,7 @@ class UserList extends Component {
 				<td>{username}</td>
 				<td>{email}</td>
 			</tr>
-		);
+		);*/
 	}
 
 	render() {
