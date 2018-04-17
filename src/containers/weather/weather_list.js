@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import _ from 'lodash';
-import Chart from '../components/chart';
-import GoogleMap from '../components/google_maps';
+import Chart from '../../components/weather/chart';
+import GoogleMap from '../../components/weather/google_maps';
 
 class WeatherList extends Component {
 	renderWeather(cityData) {
