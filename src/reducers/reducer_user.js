@@ -6,9 +6,7 @@ export default function(state = [], action) {
 		if (!action.payload.data) {
 			return state;
 		}
-		// return Object.assign({}, state, action.payload.data);
-		return [ action.payload.data, ...state ];
-		//return { users:action.payload.data, ...state }; //Use this
+		return [ action.payload.data.payload.results ];
 	default:
 		return state;
 	}

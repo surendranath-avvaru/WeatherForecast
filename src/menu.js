@@ -9,6 +9,9 @@ export default class Menu extends React.Component {
    }
 
    render() {
+      const role = "Admin"
+      const users = role == "Admin" ? (<li><Link to="/users">Users</Link></li>) : (<br/>);
+
       return (
          <div>
          <nav className="navbar navbar-default">
@@ -16,7 +19,7 @@ export default class Menu extends React.Component {
                <li><Link to="/my-profile">My Profile</Link></li>
                <li><Link to="/weather">Weather Info</Link></li>
             {/* If condition for super user here! */}
-               <li><Link to="/users">Users</Link></li>
+               { users }
             </ul>
          </nav>
             {this.props.children}

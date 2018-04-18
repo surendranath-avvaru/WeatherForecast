@@ -6,11 +6,10 @@ import UserList from '../../containers/users/user_list_container';
 import { fetchUsers } from '../../actions/users/index';
 
 
-class UserMain extends Component {
+export default class UserMain extends Component {
 
 	constructor(props) {
 		super(props);
-		this.props.fetchUsers();
 	}
 
 	render() {
@@ -21,9 +20,3 @@ class UserMain extends Component {
 	    );
 	}
 }
-
-function mapDispatchToProps(dispatch) {
-	return bindActionCreators({ fetchUsers }, dispatch);
-}
-
-export default connect(null, mapDispatchToProps)(UserMain);

@@ -1,16 +1,19 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
+import { fetchUsers } from '../../actions/users/index';
 
 class UserList extends Component {
 
 	constructor(props) {
 		super(props);
+		this.props.fetchUsers();
 	}
 
 	renderUser(userData) {
-		return userData.payload.results.map((user)=>{ return (
-			<tr key={user.id}>
+		return userData.map((user)=>{ return (
+			<tr className="table-row" key={user.id}>
 				<td>{user.first_name}</td>
 				<td>{user.last_name}</td>
 				<td>{user.username}</td>
@@ -57,4 +60,10 @@ function mapStateToProps({users}) {
 	return { users };
 }
 
-export default connect(mapStateToProps)(UserList);
+function mapDispatchToProps(dispatch) {
+	return bindActionCreators({ fetchUsers }, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(UserList);
+
+// export default connect(mapStateToProps)(UserList);
