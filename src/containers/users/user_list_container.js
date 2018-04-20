@@ -13,7 +13,7 @@ class UserList extends Component {
 		super(props);
 		this.props.fetchUsers();
 	}
-
+	
 	renderUser(userData) {
 		return userData.map((user)=><UserDetail user={user} />);
 	}
