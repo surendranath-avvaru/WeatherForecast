@@ -3,6 +3,9 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import { fetchUsers } from '../../actions/users/index';
+import { deleteUser } from '../../actions/users/index';
+import UserDetail from '../../components/users/user_detail';
+
 
 class UserList extends Component {
 
@@ -12,29 +15,7 @@ class UserList extends Component {
 	}
 
 	renderUser(userData) {
-		return userData.map((user)=>{ return (
-			<tr className="table-row" key={user.id}>
-				<td>{user.first_name}</td>
-				<td>{user.last_name}</td>
-				<td>{user.username}</td>
-				<td>{user.email}</td>
-			</tr>
-			);
-		})
-		/*const user_id = userData.id
-		const first_name = userData.first_name
-		const last_name = userData.last_name;
-		const username = userData.username;
-		const email = userData.email;
-
-		return (
-			<tr key={user_id}>
-				<td>{first_name}</td>
-				<td>{last_name}</td>
-				<td>{username}</td>
-				<td>{email}</td>
-			</tr>
-		);*/
+		return userData.map((user)=><UserDetail user={user} />);
 	}
 
 	render() {
@@ -46,6 +27,7 @@ class UserList extends Component {
 						<th>Last Name</th>
 						<th>Username</th>
 						<th>Email</th>
+						<th>Action</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -65,5 +47,3 @@ function mapDispatchToProps(dispatch) {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserList);
-
-// export default connect(mapStateToProps)(UserList);
