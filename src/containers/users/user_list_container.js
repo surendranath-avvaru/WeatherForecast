@@ -1,9 +1,9 @@
+import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import { fetchUsers } from '../../actions/users/index';
-import { deleteUser } from '../../actions/users/index';
 import UserDetail from '../../components/users/user_detail';
 
 
@@ -11,12 +11,16 @@ class UserList extends Component {
 
 	constructor(props) {
 		super(props);
+		// this.props.fetchUsers();
+	}
+
+	componentDidMount() {
 		this.props.fetchUsers();
 	}
 	
-	renderUser(userData) {
+	/*renderUser(userData) {
 		return userData.map((user)=><UserDetail user={user} />);
-	}
+	}*/
 
 	render() {
 		return (
@@ -27,11 +31,11 @@ class UserList extends Component {
 						<th>Last Name</th>
 						<th>Username</th>
 						<th>Email</th>
-						<th>Action</th>
 					</tr>
 				</thead>
 				<tbody>
-					{this.props.users.map(this.renderUser)}
+					{ _.map(this.props.users, user => <UserDetail user={user} key={user.id}/>)}
+					{/*this.props.users.map(this.renderUser)*/}
 				</tbody>
 			</table>
 		);

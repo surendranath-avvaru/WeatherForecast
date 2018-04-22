@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import { Link } from 'react-router';
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 
@@ -16,7 +16,7 @@ export default class Menu extends React.Component {
          <div>
          <nav className="navbar navbar-default">
             <ul className="nav navbar-nav">
-               <li><Link to="/my-profile">My Profile</Link></li>
+               {/*<li><Link to="/my-profile">My Profile</Link></li>*/}
                <li><Link to="/weather">Weather Info</Link></li>
             {/* If condition for super user here! */}
                { users }

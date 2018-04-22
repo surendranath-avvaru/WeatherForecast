@@ -24,3 +24,7 @@ td:first-of-type, td:first-of-type > div {
 .table-row td {
 	height: 50px;
 }
+
+form a {
+	margin-left: 5px;
+}
