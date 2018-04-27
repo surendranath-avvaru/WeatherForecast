@@ -29,9 +29,14 @@ export default class UserDetail extends React.Component {
 				<td>{this.props.user.last_name}</td>
 				<td>{this.props.user.username}</td>
 				<td>{this.props.user.email}</td>
+				<td><button ref='click_element' id={this.props.user.id} className='btn btn-danger' onClick= { (e) => this.onDelete(e)}>Delete</button></td>
 			</tr>
 			);
 	}
+	onDelete(e){
+        let id = this.refs.click_element.id
+        this.props.deleteUser(id)
+    }
 }
 /*
 function mapDispatchToProps(dispatch) {

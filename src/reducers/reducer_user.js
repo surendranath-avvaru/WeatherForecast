@@ -12,6 +12,12 @@ export default function(state = {}, action) {
 
 	case USER_DETAILS:
 		return { ...state, [action.payload.data.payload.id]:action.payload.data.payload }
+
+	case 'DELETE_USER':
+		let new_state = Object.assign({}, state)
+		delete new_state[action.payload]
+		return new_state
+
 	default:
 		return state;
 	}

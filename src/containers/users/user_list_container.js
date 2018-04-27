@@ -6,6 +6,8 @@ import { bindActionCreators } from 'redux';
 import { fetchUsers } from '../../actions/users/index';
 import UserDetail from '../../components/users/user_detail';
 
+import { deleteUser } from '../../actions/users/index';
+
 
 class UserList extends Component {
 
@@ -34,7 +36,7 @@ class UserList extends Component {
 					</tr>
 				</thead>
 				<tbody>
-					{ _.map(this.props.users, user => <UserDetail user={user} key={user.id}/>)}
+					{ _.map(this.props.users, user => <UserDetail user={user} deleteUser={this.props.deleteUser} key={user.id}/>)}
 					{/*this.props.users.map(this.renderUser)*/}
 				</tbody>
 			</table>
@@ -47,7 +49,7 @@ function mapStateToProps({users}) {
 }
 
 function mapDispatchToProps(dispatch) {
-	return bindActionCreators({ fetchUsers }, dispatch);
+	return bindActionCreators({ fetchUsers, deleteUser }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserList);

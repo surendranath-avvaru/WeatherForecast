@@ -41,7 +41,7 @@ export function detailUser(id) {
 
 export function deleteUser(id, callback) {
 	const url = `${ROOT_URl}/user/${id}/`;
-	const request = axios.delete(url).then(() => callback());
+	const request = axios.delete(url);/*.then(() => callback());*/
 
 	return {
 		type: DELETE_USER,
