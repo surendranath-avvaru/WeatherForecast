@@ -112,9 +112,6 @@ function validate(values) {
 	if (!values.username) {
 		errors.userName = "Enter user name!";
 	}
-	// if (values.userName.length < 4) {
-	// 	errors.userName = "Username must contain 4 characters!";
-	// }
 	if (!values.email) {
 		errors.email = "Enter email!";
 	}

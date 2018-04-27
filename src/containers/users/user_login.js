@@ -63,7 +63,7 @@ class UserLogin extends Component {
 				</form>
 				<hr/>
 				<div>
-					Not a user? <Link to="/user/register" className="btn btn-primary">Register</Link>
+					Not a user? <Link to="/register" className="btn btn-primary">Register</Link>
 				</div>
 			</div>
 		);
