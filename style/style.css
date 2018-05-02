@@ -28,3 +28,10 @@ td:first-of-type, td:first-of-type > div {
 form a {
 	margin-left: 5px;
 }
+
+.pagination li {
+	margin: 3px;
+	padding: 3px;
+	border: 1px solid black;
+	display: inline;
+}

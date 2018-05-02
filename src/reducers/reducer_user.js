@@ -8,7 +8,8 @@ export default function(state = {}, action) {
 		// 	return state;
 		// }
 		// return [ action.payload.data.payload.results ];
-		return _.mapKeys(action.payload.data.payload.results, 'id');
+		return (action.payload.data.payload);
+		//_.mapKeys(action.payload.data.payload.results, 'id');
 
 	case USER_DETAILS:
 		return { ...state, [action.payload.data.payload.id]:action.payload.data.payload }
