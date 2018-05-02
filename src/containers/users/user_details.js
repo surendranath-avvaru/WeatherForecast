@@ -35,9 +35,9 @@ class UserDetails extends Component {
 					<h3>Email</h3>
 					<p>{ user.email }</p>
 				</div>
-				<div>
+				{/*<div>
 					<button className="btn btn-danger pulls-xs-right" onClick={this.handleDelete.bind(this)}>Delete</button>
-				</div>
+				</div>*/}
 			</div>
 		);
 	}
