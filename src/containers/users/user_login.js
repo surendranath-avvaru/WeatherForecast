@@ -1,7 +1,9 @@
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 
+import { loginUser } from '../../actions/users/index';
 
 class UserLogin extends Component {
 
@@ -44,16 +46,22 @@ class UserLogin extends Component {
 
 	onSubmit(values) {
 		console.log(values);
+		debugger;
+		this.props.loginUser(values, (response) => {
+			response.json().then((data) => { Authentication.authenticateUser(data.access_token) });
+			this.props.history.push('/users');
+		});
+
 	}
 
 	render() {
-		const { handleLogin } = this.props;
+		const { handleSubmit } = this.props;
 		
 		return (
 			<div>
-				<form>
+				<form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
 			      	<div>
-			        	<Field label="UserName" name="userName" component={this.renderField}/>
+			        	<Field label="UserName" name="username" component={this.renderField}/>
 			      	</div>
 			      	<div>
 			        	<Field label="Password" name="password" component={this.renderPasswordField}/>
@@ -73,7 +81,7 @@ class UserLogin extends Component {
 function validate(values) {
 	const errors = {};
 
-	if (!values.userName) {
+	if (!values.username) {
 		errors.userName = "Enter user name!";
 	}
 
@@ -87,4 +95,4 @@ function validate(values) {
 export default reduxForm({
 	validate,
 	form: 'UserLoginForm'
-})(UserLogin);
+})(connect(null, { loginUser })(UserLogin));

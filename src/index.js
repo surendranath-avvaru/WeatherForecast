@@ -19,12 +19,12 @@ ReactDOM.render(
   <Provider store={createStoreWithMiddleware(reducers)}>
   	<BrowserRouter>
       <div>
-          <Route path="/" component = {Menu} />
         <Switch>
           <Route path="/weather" component = {App} />
           <Route path="/users" component = {UserMain} />
           <Route path="/user/:id" component = {UserDetails} />
         </Switch>
+        <br/>
         <Switch>
           <Route path="/login" component = {UserLogin} />
           <Route path="/register" component = {RegisterUser} />

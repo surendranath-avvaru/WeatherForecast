@@ -5,9 +5,8 @@ import { bindActionCreators } from 'redux';
 import { Pagination } from 'react-bootstrap';
 
 import { fetchUsers } from '../../actions/users/index';
-import UserDetail from '../../components/users/user_detail';
-
 import { deleteUser } from '../../actions/users/index';
+import UserDetail from '../../components/users/user_detail';
 
 
 class UserList extends Component {

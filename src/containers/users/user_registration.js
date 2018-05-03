@@ -63,9 +63,8 @@ class RegisterUser extends Component {
 	}
 
 	onSubmit(values) {
-		console.log(values);
 		this.props.registerUser(values, () => {
-			this.props.history.push('/users');
+			this.props.history.push('/login');
 		});
 	}
 
@@ -128,4 +127,4 @@ function validate(values) {
 export default reduxForm({
 	validate,
 	form: 'RegisterUserForm'
-})(connect(null,{ registerUser })(RegisterUser));
+})(connect(null, { registerUser })(RegisterUser));
