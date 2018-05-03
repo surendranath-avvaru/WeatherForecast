@@ -45,6 +45,7 @@ class UserList extends Component {
 	    const current_page = this.props.start_page;
 	    const previous_page = this.props.previous_page;
 	    const next_page = this.props.next_page;
+	    const current_page_count = this.props.users_count - (pages-1)*per_page
 
 	    let start_count = 0;
 	    let items = [];
@@ -66,7 +67,7 @@ class UserList extends Component {
 						</tr>
 					</thead>
 					<tbody>
-						{ _.map(this.props.users, user => <UserDetail user={user} deleteUser={this.props.deleteUser} fetchUsers={this.props.fetchUsers} page={current_page} key={user.id}/>)}
+						{ _.map(this.props.users, user => <UserDetail user={user} deleteUser={this.props.deleteUser} fetchUsers={this.props.fetchUsers} page={current_page} current_page_count={current_page_count} key={user.id}/>)}
 					</tbody>
 				</table>
 

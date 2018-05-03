@@ -23,9 +23,12 @@ export default class UserDetail extends React.Component {
 			);
 	}
 	onDelete(e){
+		const count = this.props.current_page_count;
+		const current_page = this.props.page;
         let id = this.refs.click_element.id;
+
         this.props.deleteUser(id, () => {
-			this.props.fetchUsers(this.props.page);
+			this.props.fetchUsers(count == 1 ? 1 : current_page);
 		}, this.props.page);
     }
 }
