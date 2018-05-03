@@ -8,8 +8,8 @@ export const REGISTER_USER = 'REGISTER_USER';
 export const USER_DETAILS = 'USER_DETAILS';
 export const DELETE_USER = 'DELETE_USER';
 
-export function fetchUsers() {
-	const url = `${ROOT_URl}/user/`;
+export function fetchUsers(page) {
+	const url = `${ROOT_URl}/user/?page=${page}`;
 	const request = axios.get(url);
 
 	return {
