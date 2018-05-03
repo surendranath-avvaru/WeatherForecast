@@ -70,7 +70,7 @@ class UserList extends Component {
 					</tbody>
 				</table>
 
-				<Pagination>
+				<Pagination className="pagination">
 				  <Pagination.Prev onClick={(e)=>this.getPreviousPageUsers(e, this.props.previous_page)}/>
 				  {items}
 				  <Pagination.Next onClick={(e)=>this.getNextPageUsers(e, this.props.next_page)}/>
