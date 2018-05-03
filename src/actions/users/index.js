@@ -39,12 +39,12 @@ export function detailUser(id) {
 	};
 }
 
-export function deleteUser(id, callback) {
+export function deleteUser(id, callback, page) {
 	const url = `${ROOT_URl}/user/${id}/`;
-	const request = axios.delete(url);/*.then(() => callback());*/
+	const request = axios.delete(url).then((page) => callback(page));
 
 	return {
 		type: DELETE_USER,
-		payload: id
+		payload: request
 	};
 }

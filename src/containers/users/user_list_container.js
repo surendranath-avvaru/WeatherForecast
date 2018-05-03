@@ -15,7 +15,6 @@ class UserList extends Component {
 	constructor(props) {
 		super(props);
 		this.getSelectedPageUsers = this.getSelectedPageUsers.bind(this);
-		// this.props.fetchUsers();
 	}
 
 	componentDidMount() {
@@ -25,10 +24,7 @@ class UserList extends Component {
 	getSelectedPageUsers(page) {
 		this.props.fetchUsers(Number(page.target.innerText));
 	}
-	/*renderUser(userData) {
-		return userData.map((user)=><UserDetail user={user} />);
-	}*/
-	
+
 	render() {
 	    const per_page = 10;
 	    const pages = Math.ceil(this.props.users_count / per_page);
@@ -54,24 +50,15 @@ class UserList extends Component {
 						</tr>
 					</thead>
 					<tbody>
-						{ _.map(this.props.users, user => <UserDetail user={user} deleteUser={this.props.deleteUser} key={user.id}/>)}
-						{/*this.props.users.map(this.renderUser)*/}
+						{ _.map(this.props.users, user => <UserDetail user={user} deleteUser={this.props.deleteUser} fetchUsers={this.props.fetchUsers} page={current_page} key={user.id}/>)}
 					</tbody>
 				</table>
-				{/*<ul className="pagination">
-					<li>&larr;</li>
-					{items}
-					<li>&rarr;</li>
-				</ul>*/}
 
 				<Pagination>
 				  <Pagination.Prev />
 				  {items}
 				  <Pagination.Next />
 				</Pagination>
-				{/*<Pagination className="users-pagination pull-right" bsSize="medium" maxButtons={10} 
-				first last next
-          prev boundaryLinks items={pages} activePage={current_page}/>*/}
 
 			</div>
 
@@ -80,7 +67,6 @@ class UserList extends Component {
 }
 
 function mapStateToProps(state) {
-	// debugger;
 	return {
 			users: _.mapKeys(state.users.results, 'id'),
 			next_page: state.users.next,

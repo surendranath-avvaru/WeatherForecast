@@ -9,20 +9,9 @@ import { deleteUser } from '../../actions/users/index';
 export default class UserDetail extends React.Component {
 	constructor(props) {
 		super(props);
-		// this.delete = this.delete.bind(this);
 	}
 
-	// static contextTypes = {
-	// 	router: PropTypes.object
-	// };
-
-	/*delete(){
-		const user_id = this.props.user.id;
-		this.props.deleteUser(user_id).then(() => {this.context.router.push('/users');});
-	}*/
-
 	render() {
-		// const user_id = this.props.user.id;
 		return (
 			<tr className="table-row">
 				<td><Link to={`/user/${this.props.user.id}`}>{this.props.user.first_name}</Link></td>
@@ -34,13 +23,9 @@ export default class UserDetail extends React.Component {
 			);
 	}
 	onDelete(e){
-        let id = this.refs.click_element.id
-        this.props.deleteUser(id)
+        let id = this.refs.click_element.id;
+        this.props.deleteUser(id, () => {
+			this.props.fetchUsers(this.props.page);
+		}, this.props.page);
     }
 }
-/*
-function mapDispatchToProps(dispatch) {
-	return bindActionCreators({ deleteUser }, dispatch);
-}
-
-export default connect(null, mapDispatchToProps)(UserDetail);*/

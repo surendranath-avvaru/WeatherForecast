@@ -10,13 +10,6 @@ class UserDetails extends Component {
 		this.props.detailUser(id);
 	}
 
-	handleDelete() {
-		const { id } = this.props.match.params;
-		this.props.deleteUser(id, () => {
-			this.props.history.push("/users");
-		});
-	}
-
 	render() {
 		const { user } = this.props;
 
@@ -35,9 +28,6 @@ class UserDetails extends Component {
 					<h3>Email</h3>
 					<p>{ user.email }</p>
 				</div>
-				{/*<div>
-					<button className="btn btn-danger pulls-xs-right" onClick={this.handleDelete.bind(this)}>Delete</button>
-				</div>*/}
 			</div>
 		);
 	}
@@ -47,4 +37,4 @@ function mapStateToProps({ users }, ownProps) {
 	return { user: users[ownProps.match.params.id] };
 }
 
-export default connect(mapStateToProps, { detailUser, deleteUser })(UserDetails);
+export default connect(mapStateToProps, { detailUser })(UserDetails);
