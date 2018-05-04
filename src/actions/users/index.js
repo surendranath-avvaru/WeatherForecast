@@ -9,6 +9,7 @@ export const REGISTER_USER = 'REGISTER_USER';
 export const LOGIN_USER = 'LOGIN_USER';
 export const USER_DETAILS = 'USER_DETAILS';
 export const DELETE_USER = 'DELETE_USER';
+export const GET_USER_PROFILE = 'GET_USER_PROFILE';
 
 export function fetchUsers(page) {
 	const url = `${ROOT_URl}/user/?page=${page}`;
@@ -18,7 +19,22 @@ export function fetchUsers(page) {
 		type: FETCH_USERS,
 		payload: request
 	};
+}
 
+export function getUserProfile(token, callback) {
+	const url = `${ROOT_URl}/my-profile/`;
+	const request = axios({
+					    method: 'get',
+					    url: url,
+					    headers: {
+					      'Authorization': `Bearer ${token}`
+					    }
+					  }).then((res) => callback(res));
+
+	return {
+		type: GET_USER_PROFILE,
+		payload: request
+	};
 }
 
 export function registerUser(values, callback) {
@@ -38,9 +54,7 @@ export function loginUser(values, callback) {
             auth_data.append(key,post_data[key])
         }
 	const url = `${ROOT_URl}/login/`;
-	debugger;
-	const request = axios.post(url, auth_data).then((response)=>callback(response));
-	// then(() => callback());
+	const request = axios.post(url, auth_data).then((res) => callback(res)).catch((error)=> {callback(error.response);});
 
 	return {
 		type: LOGIN_USER,

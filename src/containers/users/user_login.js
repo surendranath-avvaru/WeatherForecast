@@ -1,11 +1,18 @@
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import React, { Component } from 'react';
+import { bindActionCreators } from 'redux';
 import { Field, reduxForm } from 'redux-form';
 
-import { loginUser } from '../../actions/users/index';
+import { loginUser, getUserProfile } from '../../actions/users/index';
+import Authentication from '../../authentication/authentication.js';
 
 class UserLogin extends Component {
+
+	constructor(props) {
+        super(props);
+        this.state = { auth_details: { is_authenticated: false,  error_message: ''}};
+    }
 
 	renderField(field) {
 		const { meta: { touched, error } } = field;
@@ -45,12 +52,36 @@ class UserLogin extends Component {
 	}
 
 	onSubmit(values) {
-		console.log(values);
-		debugger;
-		this.props.loginUser(values, (response) => {
-			response.json().then((data) => { Authentication.authenticateUser(data.access_token) });
-			this.props.history.push('/users');
-		});
+		this.props.loginUser(values,
+				(response) => {
+					if (response.status == 200) {
+						this.setState( {auth_details: { is_authenticated: true}})
+						Authentication.authenticateUser(response.data.access_token);
+
+						this.props.getUserProfile(response.data.access_token, (res)=>{
+							if (res.status == 200) {
+								Authentication.setSuperUserRole(res.data.payload.is_superuser);
+							}
+							else {
+								alert("Error!");
+							}
+						});
+						this.props.history.push('/');
+
+						/*is_superuser = Authentication.isSuperUserRole();
+						alert(is_superuser);
+
+						if (!is_superuser) {
+							console.log("Inside if");
+							console.log(this.props.profile.is_superuser);
+							Authentication.setSuperUserRole(this.props.profile.is_superuser);
+						}*/
+					}
+					else {
+						this.setState( {auth_details: { is_authenticated: false, error_message: response.data.error_description}})
+					}
+				}
+			);
 
 	}
 
@@ -59,6 +90,7 @@ class UserLogin extends Component {
 		
 		return (
 			<div>
+				<p className="error">{this.state.auth_details.error_message}</p>
 				<form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
 			      	<div>
 			        	<Field label="UserName" name="username" component={this.renderField}/>
@@ -92,7 +124,11 @@ function validate(values) {
 	return errors;
 }
 
+function mapDispatchToProps(dispatch) {
+	return bindActionCreators({ loginUser, getUserProfile }, dispatch);
+}
+
 export default reduxForm({
 	validate,
 	form: 'UserLoginForm'
-})(connect(null, { loginUser })(UserLogin));
+})(connect(null, mapDispatchToProps)(UserLogin));

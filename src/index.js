@@ -20,7 +20,7 @@ ReactDOM.render(
   	<BrowserRouter>
       <div>
         <Switch>
-          <Route path="/weather" component = {App} />
+          <Route exact path="/" component = {App} />
           <Route path="/users" component = {UserMain} />
           <Route path="/user/:id" component = {UserDetails} />
         </Switch>

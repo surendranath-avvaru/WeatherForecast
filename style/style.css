@@ -31,7 +31,11 @@ form a {
 
 .pagination li {
 	margin: 3px;
-	padding: 5px;
+	padding: 10px;
 	border: 1px solid black;
 	display: inline;
+}
+
+.error {
+	color: red;
 }

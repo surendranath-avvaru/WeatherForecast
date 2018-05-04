@@ -1,7 +1,9 @@
 import { Link } from 'react-router-dom';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+
 import { detailUser, deleteUser } from '../../actions/users/index';
+import Menu from '../../menu';
 
 class UserDetails extends Component {
 
@@ -19,6 +21,7 @@ class UserDetails extends Component {
 
 		return (
 			<div>
+				<Menu />
 				<div>
 					<Link to="/users">Back</Link>
 					<h3>Name</h3>

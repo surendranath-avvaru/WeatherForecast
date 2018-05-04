@@ -1,19 +1,28 @@
 class Authentication {
 
     static authenticateUser(token) {
-        sessionStorage.setItem('token', token)
+        sessionStorage.setItem("token", token);
     }
 
+
     static getAuthenticatedToken() {
-        return sessionStorage.getItem('token')
+        return sessionStorage.getItem("token");
     }
 
     static deauthenticateUser() {
-        return sessionStorage.removeItem('token')
+        sessionStorage.removeItem("token");
     }
 
     static isAuthenticatedUser() {
-        return sessionStorage.getItem('token') != 'null'
+        return sessionStorage.getItem("token") != null;
+    }
+
+    static setSuperUserRole(is_superuser) {
+        sessionStorage.setItem("is_superuser", is_superuser);
+    }
+
+    static isSuperUserRole() {
+        return sessionStorage.getItem("is_superuser");
     }
 }
 
