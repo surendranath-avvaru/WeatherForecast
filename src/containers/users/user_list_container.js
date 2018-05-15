@@ -63,6 +63,7 @@ class UserList extends Component {
 							<th>Last Name</th>
 							<th>Username</th>
 							<th>Email</th>
+							<th>Action</th>
 						</tr>
 					</thead>
 					<tbody>

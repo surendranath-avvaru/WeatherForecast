@@ -66,7 +66,7 @@ class UserLogin extends Component {
 								alert("Error!");
 							}
 						});
-						this.props.history.push('/');
+						this.props.history.push('/weather-info');
 
 						/*is_superuser = Authentication.isSuperUserRole();
 						alert(is_superuser);

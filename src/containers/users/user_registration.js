@@ -64,7 +64,7 @@ class RegisterUser extends Component {
 
 	onSubmit(values) {
 		this.props.registerUser(values, () => {
-			this.props.history.push('/login');
+			this.props.history.push('/');
 		});
 	}
 
@@ -93,7 +93,7 @@ class RegisterUser extends Component {
 		      	</div>
 
 		      	<button type="submit" className="btn btn-success">Submit</button>
-		      	<Link to="/login" className="btn btn-danger">Cancel</Link>
+				<Link to="/" className="btn btn-danger">Cancel</Link>
 			</form>
 		);
 	}

@@ -4,13 +4,12 @@ class Authentication {
         sessionStorage.setItem("token", token);
     }
 
-
     static getAuthenticatedToken() {
         return sessionStorage.getItem("token");
     }
 
     static deauthenticateUser() {
-        sessionStorage.removeItem("token");
+        sessionStorage.clear();
     }
 
     static isAuthenticatedUser() {

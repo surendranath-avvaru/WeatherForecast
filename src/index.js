@@ -10,6 +10,7 @@ import UserMain from './components/users/user_main';
 import RegisterUser from './containers/users/user_registration';
 import UserLogin from './containers/users/user_login';
 import UserDetails from './containers/users/user_details';
+import Logout from './components/users/user_logout';
 import reducers from './reducers';
 import Menu from './menu';
 
@@ -20,14 +21,12 @@ ReactDOM.render(
   	<BrowserRouter>
       <div>
         <Switch>
-          <Route exact path="/" component = {App} />
+          <Route exact path="/" component = {UserLogin} />
+          <Route path="/register" component = {RegisterUser} />
+          <Route path="/weather-info" component = {App} />
           <Route path="/users" component = {UserMain} />
           <Route path="/user/:id" component = {UserDetails} />
-        </Switch>
-        <br/>
-        <Switch>
-          <Route path="/login" component = {UserLogin} />
-          <Route path="/register" component = {RegisterUser} />
+          <Route path="/logout" component = {Logout} />
         </Switch>
       </div>
   	</BrowserRouter>
