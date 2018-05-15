@@ -15,7 +15,6 @@ export default class Menu extends React.Component {
    }
 
    render() {
-      console.log(this.state.is_admin);
       const users = <li><Link to="/users">Users</Link></li>
       /*const users = this.state.is_admin == 'true' ? (<li><Link to="/users">Users</Link></li>) : (<br/>);*/
 
