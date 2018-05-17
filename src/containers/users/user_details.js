@@ -21,7 +21,6 @@ class UserDetails extends Component {
 
 		return (
 			<div>
-				<Menu />
 				<div>
 					<Link to="/users">Back</Link>
 					<h3>Name</h3>

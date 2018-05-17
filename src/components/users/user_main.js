@@ -15,7 +15,6 @@ export default class UserMain extends Component {
 	render() {
 	    return (
 	        <div>
-	        	<Menu />
 	      		<UserList />
 	        </div>
 	    );

@@ -5,13 +5,17 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import { getUserProfile } from './actions/users/index';
-import Authentication from './authentication/authentication.js';
+import Authentication from './authentication/authentication';
 
 export default class Menu extends React.Component {
    constructor(props){
       super(props);
       this.state = {is_admin: true}
       //Authentication.isSuperUserRole()
+   }
+
+   logoutUser() {
+      Authentication.deauthenticateUser();
    }
 
    render() {
@@ -25,7 +29,7 @@ export default class Menu extends React.Component {
                   <li><Link to="/weather-info">Weather Info</Link></li>
                {/* If condition for super user here! */}
                   { users }
-                  <li><Link to="/logout">Logout</Link></li>
+                  <li><Link to="/" onClick={()=> this.logoutUser()}>Logout</Link></li>
                </ul>
             </nav>
          </div>
