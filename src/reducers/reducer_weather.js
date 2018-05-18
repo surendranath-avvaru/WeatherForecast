@@ -7,7 +7,6 @@ export default function(state = [], action) {
 			alert("City not found!");
 			return state;
 		}
-		/*return state.concat([action.payload.data]);*/
 		return [ ...state, action.payload.data ];
 	}
 	return state;

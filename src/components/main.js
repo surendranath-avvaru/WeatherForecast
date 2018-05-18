@@ -2,8 +2,8 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 
-import Menu from '../menu';
 import App from './weather/app';
+import Menu from '../containers/menu';
 import store from '../redux_store/store';
 import UserMain from './users/user_main';
 import PrivateRoute from './route/private_route';

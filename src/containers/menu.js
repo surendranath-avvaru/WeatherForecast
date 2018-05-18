@@ -4,8 +4,8 @@ import axios from 'axios';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { getUserProfile } from './actions/users/index';
-import Authentication from './authentication/authentication';
+import { getUserProfile } from '../actions/users/index';
+import Authentication from '../authentication/authentication';
 
 class Menu extends React.Component {
    constructor(props){

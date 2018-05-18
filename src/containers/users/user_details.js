@@ -4,7 +4,6 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 
 import { detailUser, deleteUser } from '../../actions/users/index';
-import Menu from '../../menu';
 
 class UserDetails extends Component {
 

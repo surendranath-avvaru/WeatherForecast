@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 
 import UserList from '../../containers/users/user_list_container';
 import { fetchUsers } from '../../actions/users/index';
-import Menu from '../../menu';
 
 export default class UserMain extends Component {
 

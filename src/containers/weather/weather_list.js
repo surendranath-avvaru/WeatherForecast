@@ -41,7 +41,7 @@ class WeatherList extends Component {
 }
 
 function mapStateToProps({ weather }) {
-	return { weather }; // { weather } === { weather: weather }
+	return { weather };
 }
 
 export default connect(mapStateToProps)(WeatherList);
