@@ -1,6 +1,7 @@
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
 import { detailUser, deleteUser } from '../../actions/users/index';
 import Menu from '../../menu';
@@ -39,4 +40,8 @@ function mapStateToProps({ users }, ownProps) {
 	return { user: users[ownProps.match.params.id] };
 }
 
-export default connect(mapStateToProps, { detailUser })(UserDetails);
+function mapDispatchToProps(dispatch) {
+   return bindActionCreators({ detailUser }, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(UserDetails);

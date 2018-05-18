@@ -7,27 +7,36 @@ import { bindActionCreators } from 'redux';
 import { getUserProfile } from './actions/users/index';
 import Authentication from './authentication/authentication';
 
-export default class Menu extends React.Component {
+class Menu extends React.Component {
    constructor(props){
       super(props);
-      this.state = {is_admin: true}
-      //Authentication.isSuperUserRole()
+      this.state = {is_admin: ''}
    }
 
    logoutUser() {
       Authentication.deauthenticateUser();
    }
 
+   componentDidMount() {
+      this.props.getUserProfile(Authentication.getAuthenticatedToken(), (res)=>{
+                     if (res.status == 200) {
+                        Authentication.setSuperUserRole(res.data.payload.is_superuser);
+                        this.setState({is_admin: Authentication.isSuperUserRole()});
+                     }
+                     else {
+                        alert("Error!");
+                     }
+                  });
+   }
+
    render() {
-      const users = <li><Link to="/users">Users</Link></li>
-      /*const users = this.state.is_admin == 'true' ? (<li><Link to="/users">Users</Link></li>) : (<br/>);*/
+      const users = this.state.is_admin == 'true' ? (<li><Link to="/users">Users</Link></li>) : null;
 
       return (
          <div>
             <nav className="navbar navbar-default">
                <ul className="nav navbar-nav">
                   <li><Link to="/weather-info">Weather Info</Link></li>
-               {/* If condition for super user here! */}
                   { users }
                   <li><Link to="/" onClick={()=> this.logoutUser()}>Logout</Link></li>
                </ul>
@@ -36,3 +45,9 @@ export default class Menu extends React.Component {
       )
    }
 }
+
+function mapDispatchToProps(dispatch) {
+   return bindActionCreators({ getUserProfile }, dispatch);
+}
+
+export default connect(null, mapDispatchToProps)(Menu);

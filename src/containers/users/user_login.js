@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { Field, reduxForm } from 'redux-form';
 
-import { loginUser, getUserProfile } from '../../actions/users/index';
+import { loginUser } from '../../actions/users/index';
 import Authentication from '../../authentication/authentication.js';
 
 class UserLogin extends Component {
@@ -55,27 +55,9 @@ class UserLogin extends Component {
 		this.props.loginUser(values,
 				(response) => {
 					if (response.status == 200) {
-						this.setState( {auth_details: { is_authenticated: true}})
+						this.setState( {auth_details: { is_authenticated: true}});
 						Authentication.authenticateUser(response.data.access_token);
-
-						this.props.getUserProfile(response.data.access_token, (res)=>{
-							if (res.status == 200) {
-								Authentication.setSuperUserRole(res.data.payload.is_superuser);
-							}
-							else {
-								alert("Error!");
-							}
-						});
 						this.props.history.push('/weather-info');
-
-						/*is_superuser = Authentication.isSuperUserRole();
-						alert(is_superuser);
-
-						if (!is_superuser) {
-							console.log("Inside if");
-							console.log(this.props.profile.is_superuser);
-							Authentication.setSuperUserRole(this.props.profile.is_superuser);
-						}*/
 					}
 					else {
 						this.setState( {auth_details: { is_authenticated: false, error_message: response.data.error_description}})
@@ -87,7 +69,7 @@ class UserLogin extends Component {
 
 	render() {
 		const { handleSubmit } = this.props;
-		
+
 		return (
 			<div>
 				<p className="error">{this.state.auth_details.error_message}</p>
@@ -125,7 +107,7 @@ function validate(values) {
 }
 
 function mapDispatchToProps(dispatch) {
-	return bindActionCreators({ loginUser, getUserProfile }, dispatch);
+	return bindActionCreators({ loginUser }, dispatch);
 }
 
 export default reduxForm({
