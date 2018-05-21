@@ -7,10 +7,6 @@ import { fetchUsers } from '../../actions/users/index';
 
 export default class UserMain extends Component {
 
-	constructor(props) {
-		super(props);
-	}
-
 	render() {
 	    return (
 	        <div>

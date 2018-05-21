@@ -7,9 +7,6 @@ import { deleteUser } from '../../actions/users/index';
 
 
 export default class UserDetail extends React.Component {
-	constructor(props) {
-		super(props);
-	}
 
 	render() {
 		return (
