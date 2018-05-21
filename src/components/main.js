@@ -11,13 +11,15 @@ import PageNotFound from './error/page_not_found';
 import UserLogin from '../containers/users/user_login';
 import UserDetails from '../containers/users/user_details';
 import RegisterUser from '../containers/users/user_registration';
+import UpdateUser from '../containers/users/user_update';
 
 const DefaultContainer = () => (
   	<div>
       <Menu />
       <PrivateRoute path="/weather-info" component = {App} />
       <PrivateRoute path="/users" component = {UserMain} />
-      <PrivateRoute path="/user/:id" component = {UserDetails} />
+      <PrivateRoute exact path="/user/:id" component = {UserDetails} />
+      <PrivateRoute exact path="/user/:id/update" component = {UpdateUser} />
   	</div>
 )
 

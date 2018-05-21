@@ -3,8 +3,6 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 
-import { deleteUser } from '../../actions/users/index';
-
 
 export default class UserDetail extends React.Component {
 
@@ -15,11 +13,14 @@ export default class UserDetail extends React.Component {
 				<td>{this.props.user.last_name}</td>
 				<td>{this.props.user.username}</td>
 				<td>{this.props.user.email}</td>
-				<td><button ref='click_element' id={this.props.user.id} className='btn btn-danger' onClick= { (e) => this.onDelete(e)}>Delete</button></td>
+				<td>
+					<Link to={`/user/${this.props.user.id}/update`} className="btn btn-primary">Update</Link>&nbsp;
+					<button ref='click_element' id={this.props.user.id} className='btn btn-danger' onClick= { (e) => this.onDelete(e)}>Delete</button>
+				</td>
 			</tr>
 			);
 	}
-	onDelete(e){
+	onDelete(e) {
 		const count = this.props.current_page_count;
 		const current_page = this.props.page;
         let id = this.refs.click_element.id;
@@ -28,4 +29,5 @@ export default class UserDetail extends React.Component {
 			this.props.fetchUsers(count == 1 ? 1 : current_page);
 		}, this.props.page);
     }
+
 }

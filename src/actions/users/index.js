@@ -8,6 +8,7 @@ export const FETCH_USERS = 'FETCH_USERS';
 export const REGISTER_USER = 'REGISTER_USER';
 export const LOGIN_USER = 'LOGIN_USER';
 export const USER_DETAILS = 'USER_DETAILS';
+export const USER_UPDATE = 'USER_UPDATE';
 export const DELETE_USER = 'DELETE_USER';
 export const GET_USER_PROFILE = 'GET_USER_PROFILE';
 
@@ -68,6 +69,16 @@ export function detailUser(id) {
 
 	return {
 		type: USER_DETAILS,
+		payload: request
+	};
+}
+
+export function updateUser(id, values, callback) {
+	const url = `${ROOT_URl}/user/${id}/`;
+	const request = axios.put(url, values).then((res)=> callback(res)).catch((error)=> {callback(error.response);});
+
+	return {
+		type: USER_UPDATE,
 		payload: request
 	};
 }

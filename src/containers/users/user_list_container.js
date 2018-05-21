@@ -4,8 +4,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Pagination } from 'react-bootstrap';
 
-import { fetchUsers } from '../../actions/users/index';
-import { deleteUser } from '../../actions/users/index';
+import { fetchUsers, deleteUser } from '../../actions/users/index';
 import UserDetail from '../../components/users/user_detail';
 
 
@@ -76,7 +75,6 @@ class UserList extends Component {
 				  {items}
 				  <Pagination.Next onClick={(e)=>this.getNextPageUsers(e, this.props.next_page)}/>
 				</Pagination>
-
 			</div>
 
 		);
